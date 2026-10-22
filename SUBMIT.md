@@ -80,7 +80,8 @@ The lab answers with one fixed line and never repeats your text.
 | Reply | Meaning |
 | :- | :- |
 | `Received. Waiting for review.` | The format is fine. The issue is locked while it waits. |
-| `Live: <link>` | Published. Changes can take up to 10 minutes to show. |
+| `Approved. Publishing now.` | Accepted at review. The issue stays open until the page is live. |
+| `Live: <link>` | Published and live. Later changes can take up to 10 minutes to show. |
 | `Removed.` | Your page is gone. |
 | `Closed: TOO_BIG` | Over a limit. |
 | `Closed: BAD_FORMAT` | The title, the manifest, a block, a path, the file types or the checksum is wrong. |
