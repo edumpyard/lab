@@ -1,0 +1,30 @@
+name: Page
+description: Send a static page (a .zip with index.html) to be published on the lab.
+title: New page
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the title "New page". To replace your page, use "Update <name>". To take it down, use "Remove <name>" and leave the file out.
+        Rules and limits: SUBMIT.md in this repository.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: One or two sentences about the page.
+    validations:
+      required: true
+  - type: upload
+    id: page
+    attributes:
+      label: Page (.zip, up to 25 MB)
+      description: A .zip with index.html at the top. Leave it out for a removal.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Terms
+      options:
+        - label: I have the right to publish this. It is public. The lab may remove it at any time.
+          required: true
