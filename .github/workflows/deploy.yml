@@ -23,7 +23,6 @@ jobs:
     timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
@@ -61,7 +60,6 @@ jobs:
         env:
           OUTCOME: ${{ steps.deployment.outcome }}
           PAGES: ${{ steps.build.outputs.pages || '-' }}
-          URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           if [[ "$OUTCOME" == success ]]; then
             echo "::notice title=Deployed::$PAGES pages"
@@ -69,12 +67,7 @@ jobs:
           else
             alert=$'> [!CAUTION]\n'"> Deploy did not succeed ($OUTCOME)."
           fi
-          {
-            printf '%s\n\n| Pages | Deploy |\n|---|---|\n| %s | %s |\n' "$alert" "$PAGES" "$OUTCOME"
-            if [[ -n "$URL" ]]; then
-              printf '\nSite: %s\n' "$URL"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          printf '%s\n\n| Pages | Deploy |\n|---|---|\n| %s | %s |\n' "$alert" "$PAGES" "$OUTCOME" >> "$GITHUB_STEP_SUMMARY"
 
   # The artifact is only needed by the deploy step, so it is removed right after.
   cleanup:
